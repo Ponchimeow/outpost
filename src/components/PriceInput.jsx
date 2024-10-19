@@ -11,8 +11,8 @@ const StyledErrorWrapper = styled(Box)`
 
 
 
-const PriceInput = ({ label, subLabel, currency }) => {
-    const [price, setPrice] = useState('0');
+const PriceInput = ({ price, onChange, currency }) => {
+    const [inputPrice, setInputPrice] = useState(price);
 
     return (
         <Box w="300px">
@@ -22,13 +22,25 @@ const PriceInput = ({ label, subLabel, currency }) => {
                 <Input
                     type='string'
                     placeholder='請輸入費用'
-                    borderColor={price === '' ? 'red' : ''}
-                    value={price}
-                    onChange={(e) => setPrice(addComma((e.target.value)))}
+                    borderColor={inputPrice === '' ? 'red' : ''}
+                    value={inputPrice}
+                    onChange={(e) => {
+                        let price = e.target.value.replaceAll(",", "")
+                        if (isNaN(price)) return
+                        if ((/^0+$/).test(price)) {
+                            price.replace(/^0+$/, '0$1')
+                            setInputPrice(0)
+                        } else {
+                            price = price.replace(/\b(0+)/gi, '')
+                            setInputPrice(addComma(price))
+                            onChange(addComma(price))
+                        }
+
+                    }}
                 />
             </InputGroup>
-            {price === '' ? <StyledErrorWrapper>不可以為空白</StyledErrorWrapper> : null}
             <Box textAlign='right' color="grey">輸入0表示免費</Box>
+            {inputPrice === '' ? <StyledErrorWrapper>不可以為空白</StyledErrorWrapper> : null}
         </Box>
     );
 }
