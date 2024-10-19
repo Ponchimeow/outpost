@@ -1,23 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from "react";
+import { getNumberIntervals } from "./util";
+import { Box } from "@chakra-ui/react";
+import PriceInput from "./components/PriceInput";
 
 function App() {
+  // useEffect(() => {
+  //   getNumberIntervals();
+  // }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Box>
+        <PriceInput label="入住費用" subLabel="每人每晚" currency="TWD" />
+      </Box>
     </div>
   );
 }
