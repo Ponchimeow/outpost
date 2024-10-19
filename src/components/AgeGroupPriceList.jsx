@@ -22,7 +22,9 @@ const AgeGroupPriceList = ({ result, onChange }) => {
         const { overlap, notInclude } = getNumberIntervals(intervals);
         setIsCovered(notInclude.length === 0);
 
-        if (groups.length === 1 || overlap.length <= 0) { setErrorAgeGroup([]) } else {
+        if (groups.length === 1 || overlap.length <= 0) {
+            setErrorAgeGroup([])
+        } else {
             setErrorAgeGroup(compareDuplicateArrays(groups, overlap));
         }
     }
@@ -72,7 +74,7 @@ const AgeGroupPriceList = ({ result, onChange }) => {
                         />
                     </Flex>
 
-                    {groups.length > 2 && index !== groups.length - 1 ? <Divider my="2rem" /> : null}
+                    {groups.length >= 2 && index !== groups.length - 1 ? <Divider my="2rem" /> : null}
                 </Box>
             ))}
             <Button disabled={isCovered} px="0" mt="1rem" variant='ghost' color="#419f7eea" onClick={() => { handleAddGroup() }}>
