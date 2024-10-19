@@ -45,3 +45,21 @@ export const getNumberIntervals = (rangeList = []) => {
 
   return { overlap, notInclude };
 };
+
+export const compareDuplicateArrays = (groups, overlap) => {
+  let diff = [];
+
+  for (let j = 0; j < overlap.length; j++) {
+    const currentOverlap = overlap[j];
+    for (let i = 0; i < groups.length; i++) {
+      const currentGroup = groups[i].ageGroup;
+      if (
+        currentGroup[0] <= currentOverlap[1] &&
+        currentGroup[1] >= currentOverlap[0]
+      ) {
+        diff.push(i);
+      }
+    }
+  }
+  return diff;
+};
