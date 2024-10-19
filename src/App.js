@@ -1,20 +1,16 @@
-import { useEffect } from "react";
-import { getNumberIntervals } from "./util";
 import { Box } from "@chakra-ui/react";
-import PriceInput from "./components/PriceInput";
+import AgeGroupPriceList from "./components/AgeGroupPriceList";
+import { useState } from "react";
 
-function App() {
-  // useEffect(() => {
-  //   getNumberIntervals();
-  // }, []);
-
+const App = () => {
+  const [result, setResult] = useState([{ ageGroup: [0, 20], price: "0" }]);
   return (
     <div>
       <Box>
-        <PriceInput label="入住費用" subLabel="每人每晚" currency="TWD" />
+        <AgeGroupPriceList result={result} onChange={setResult} />
       </Box>
     </div>
   );
-}
+};
 
 export default App;
