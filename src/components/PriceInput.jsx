@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Box, Input, InputGroup, InputLeftAddon } from '@chakra-ui/react';
+import { Box, Text, Input, InputGroup, InputLeftAddon } from '@chakra-ui/react';
 import { styled } from 'styled-components'
 import { addComma } from '../util.js'
 
-const StyledErrorWrapper = styled(Box)`
+const StyledErrorWrapper = styled(Text)`
     color: red;
     background-color: #fdecea;
     padding: 0.3rem;
@@ -15,11 +15,12 @@ const PriceInput = ({ price, onChange, currency }) => {
     const [inputPrice, setInputPrice] = useState(price);
 
     return (
-        <Box w="300px">
-            <Box color="grey" mb="0.5rem">{label}{subLabel ? `(${subLabel})` : null}</Box>
+        <Box w="100%">
+            <Text color="grey" mb="0.5rem">入住費用(每人每晚)</Text>
             <InputGroup borderRadius="1rem">
-                <InputLeftAddon>{currency}</InputLeftAddon>
+                <InputLeftAddon h="3rem">{currency}</InputLeftAddon>
                 <Input
+                    h="3rem"
                     type='string'
                     placeholder='請輸入費用'
                     borderColor={inputPrice === '' ? 'red' : ''}
@@ -39,8 +40,8 @@ const PriceInput = ({ price, onChange, currency }) => {
                     }}
                 />
             </InputGroup>
-            <Box textAlign='right' color="grey">輸入0表示免費</Box>
             {inputPrice === '' ? <StyledErrorWrapper>不可以為空白</StyledErrorWrapper> : null}
+            <Text textAlign='right' color="grey">輸入0表示免費</Text>
         </Box>
     );
 }
