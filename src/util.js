@@ -1,5 +1,8 @@
-export const addComma = (num) => {
-  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+export const addComma = (value) => {
+  return value
+    .toString()
+    .replaceAll(",", "")
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 };
 
 export const getNumberIntervals = (rangeList = []) => {
